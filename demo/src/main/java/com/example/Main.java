@@ -1,9 +1,5 @@
 package com.example;
 
-import com.example.CheckBalance;
-import com.example.CreateAccount;
-import com.example.Deposit;
-import com.example.Login;
 import java.util.Scanner;
 
 class StartingPoint{
