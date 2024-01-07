@@ -1,14 +1,15 @@
 package com.example;
 
-import java.util.Scanner;
+import java.io.IOError;
+import java.sql.SQLException;
 
 class StartingPoint{
     StartingPoint(){
         System.out.println("\n");
         System.out.println("     BANKING APPLICATION     \n\n");
-        System.out.println("1.LOGIN\n2.CREATE ACCOUNT\n3.CHECK BALANCE\n4.DEPOSIT\n5.WITHDRAW\n6TRANSFER");
+        System.out.println("1.LOGIN\n2.CREATE ACCOUNT\n");
     }
-    void SwitchCase(int n){
+    void SwitchCase(int n) throws SQLException{
         switch (n) {
             case 1:
                 Login.login();
@@ -16,22 +17,6 @@ class StartingPoint{
 
             case 2:
                 CreateAccount.createAccount();
-                break;
-
-            case 3:
-                CheckBalance.checkBalance();
-                break;
-
-            case 4:
-                Deposit.deposit();
-                break;
-
-            case 5:
-                WithDraw.withDraw();
-                break;
-
-            case 6:
-                Transfer.transfer();
                 break;
         
             default:
@@ -41,15 +26,12 @@ class StartingPoint{
 }
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOError, SQLException {
         StartingPoint s = new StartingPoint();
-        try (Scanner inputScanner = new Scanner(System.in)) {
-            while (true){
-                System.out.print("Enter your choice : ");
-                int n = inputScanner.nextInt();
-                s.SwitchCase(n);
-                // inputScanner.close();
-            }
+        while(true){
+            System.out.print("Enter your choice : ");
+            int n = InputHandler.inputInt();
+            s.SwitchCase(n);  
         }
     }
 }
