@@ -1,5 +1,11 @@
 package com.example;
 
+import main.java.com.example.CheckBalance;
+import main.java.com.example.CreateAccount;
+import main.java.com.example.Deposit;
+import main.java.com.example.Login;
+import java.util.Scanner;
+
 class StartingPoint{
     StartingPoint(){
         System.out.println("\n");
@@ -9,49 +15,45 @@ class StartingPoint{
     void SwitchCase(int n){
         switch (n) {
             case 1:
-                login();
+                Login.login();
                 break;
 
             case 2:
-                createAccount();
+                CreateAccount.createAccount();
                 break;
 
             case 3:
-                checkBalance();
+                CheckBalance.checkBalance();
                 break;
 
             case 4:
-                deposit();
+                Deposit.deposit();
                 break;
 
             case 5:
-                withDraw();
+                WithDraw.withDraw();
                 break;
 
             case 6:
-                transfer();
+                Transfer.transfer();
                 break;
         
             default:
                 break;
         }
     }
-    private void transfer() {
-    }
-    private void withDraw() {
-    }
-    private void deposit() {
-    }
-    private void checkBalance() {
-    }
-    private void login() {
-    }
-    private void createAccount() {
-    }
 }
 
 public class Main {
     public static void main(String[] args) throws Exception {
         StartingPoint s = new StartingPoint();
+        try (Scanner inputScanner = new Scanner(System.in)) {
+            while (true){
+                System.out.print("Enter your choice : ");
+                int n = inputScanner.nextInt();
+                s.SwitchCase(n);
+                // inputScanner.close();
+            }
+        }
     }
 }
