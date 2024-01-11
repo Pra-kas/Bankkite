@@ -11,13 +11,13 @@ public class CreateAccount {
         String accountnumber = InputHandler.inputString();
         System.out.print("Enter your password : ");
         String pass = InputHandler.inputString();
-        System.out.println("Username " + name);
-        System.out.println("NAME " + accountnumber);
-        System.out.println("PASSWORD " + pass);
         StoringInDb(accountnumber, pass,name);}
 
     static void createAccount() throws SQLException {
         userInputs();
+        while(true){
+            MainDetails.Mswitch();
+        }
     }
 
     static void StoringInDb(String accno, String pass,String name) throws SQLException {
@@ -29,7 +29,7 @@ public class CreateAccount {
 
         statement.executeUpdate();
 
-        System.out.println("Account created and stored in the database.");
+        System.out.println("\n\nAccount created and stored in the database.\n\n");
 
         statement.close();
     }
