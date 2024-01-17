@@ -3,9 +3,9 @@ package com.example;
 import java.sql.*;
 
 public class Deposit {
-    static public void deposit() throws SQLException {
+    static public void deposit() throws Exception {
         System.out.print("Enter account number: ");
-        String accountnumber = InputHandler.inputString();
+        String accountnumber = Hashing.hashing(InputHandler.inputString());
         System.out.print("Enter deposit amount: ");
         double amount = InputHandler.inputDouble();  // Use inputDouble method from InputHandler
 

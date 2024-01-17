@@ -3,15 +3,16 @@ package com.example;
 import java.sql.*;
 
 public class Login {
-    static public void login() throws SQLException {
+    static public void login() throws Exception {
         System.out.print("Enter accountnumber : ");
-        String accountnumber = InputHandler.inputString();
+        String accountnumber = Hashing.hashing(InputHandler.inputString());
         System.out.print("Enter password : ");
-        String pass = InputHandler.inputString();
-        loginValidation(accountnumber, pass);
+        String pass = Hashing.hashing(InputHandler.inputString());
+        User user = new User(accountnumber, pass,"");
+        loginValidation(user.getAccountNumber(), user.getPassword());
     }
 
-    static void loginValidation(String accno, String pass) throws SQLException {
+    static void loginValidation(String accno, String pass) throws Exception {
         String query = "SELECT * FROM user WHERE accountnumber = ? AND password = ?";
         PreparedStatement statement = DatabaseConnection.databaseConnection().prepareStatement(query);
         statement.setString(1, accno);

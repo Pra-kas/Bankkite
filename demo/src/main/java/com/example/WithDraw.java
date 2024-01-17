@@ -4,9 +4,9 @@ import java.sql.*;
 
 public class WithDraw {
 
-    static public void withDraw() throws SQLException {
+    static public void withDraw() throws Exception {
         System.out.print("Enter account number: ");
-        String accountnumber = InputHandler.inputString();
+        String accountnumber = Hashing.hashing(InputHandler.inputString());
         System.out.print("Enter withdraw amount: ");
         double amount = InputHandler.inputDouble(); 
 

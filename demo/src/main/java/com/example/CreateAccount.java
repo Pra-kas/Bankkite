@@ -4,16 +4,18 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class CreateAccount {
-    static void userInputs() throws SQLException {
+    static void userInputs() throws Exception {
         System.out.print("Enter your name : ");
         String name = InputHandler.inputString();
         System.out.print("Enter your account number : ");
-        String accountnumber = InputHandler.inputString();
+        String accountnumber = Hashing.hashing(InputHandler.inputString());
         System.out.print("Enter your password : ");
-        String pass = InputHandler.inputString();
-        StoringInDb(accountnumber, pass,name);}
+        String pass = Hashing.hashing(InputHandler.inputString());
+        User user = new User(accountnumber,pass,name);
+        StoringInDb(user.getAccountNumber(),user.getPassword(),user.getName());
+    }
 
-    static void createAccount() throws SQLException {
+    static void createAccount() throws Exception {
         userInputs();
         while(true){
             MainDetails.Mswitch();

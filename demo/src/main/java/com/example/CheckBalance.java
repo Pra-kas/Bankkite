@@ -3,9 +3,9 @@ package com.example;
 import java.sql.*;
 
 public class CheckBalance {
-    static public void checkBalance() throws SQLException{
+    static public void checkBalance() throws Exception{
         System.out.print("Enter account number : ");
-        String accountnumber = InputHandler.inputString();
+        String accountnumber = Hashing.hashing(InputHandler.inputString());
         String query = "select accountbalance from user where accountnumber = ?";
         PreparedStatement statement = DatabaseConnection.databaseConnection().prepareStatement(query);
         statement.setString(1,accountnumber);

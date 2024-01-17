@@ -1,11 +1,9 @@
 package com.example;
 
-import java.sql.SQLException;
-
 public class MainDetails {
 
-    static void Mswitch() throws SQLException{
-        System.out.println("1.Deposit\n2.Withdraw\n3.TransactionHistory\n4.Balance\n\n");
+    static void Mswitch() throws Exception{
+        System.out.println("1.Deposit\n2.Withdraw\n3.TransactionHistory\n4.Balance\n5.Exit\n\n");
         System.out.print("Enter your choice : ");
         int n = InputHandler.inputInt();
         switch(n){
@@ -24,6 +22,9 @@ public class MainDetails {
             case 4:
                 CheckBalance.checkBalance();
                 break;
+
+            case 5:
+                System.exit(0);
         }
     }
 }
