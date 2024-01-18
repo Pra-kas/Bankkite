@@ -1,9 +1,11 @@
 package com.example;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Deposit {
-    static public void deposit() throws Exception {
+    static public List<Object> deposit() throws Exception, SQLException {
         System.out.print("Enter account number: ");
         String accountnumber = Hashing.hashing(InputHandler.inputString());
         System.out.print("Enter deposit amount: ");
@@ -15,7 +17,6 @@ public class Deposit {
         try (PreparedStatement statement = DatabaseConnection.databaseConnection().prepareStatement(updateQuery)) {
             statement.setDouble(1, amount);
             statement.setString(2, accountnumber);
-
             int rowsUpdated = statement.executeUpdate();
 
             if (rowsUpdated > 0) {
@@ -24,5 +25,18 @@ public class Deposit {
                 System.out.println("\n\nAccount not found or invalid input. Deposit failed.\n\n");
             }
         }
+
+        // Retrieve updated data
+        String selectQuery = "SELECT name, accountnumber FROM user WHERE accountnumber = ?";
+        PreparedStatement selectStatement = DatabaseConnection.databaseConnection().prepareStatement(selectQuery);
+        selectStatement.setString(1, accountnumber);
+        ResultSet rs = selectStatement.executeQuery();
+        List<Object> result = new ArrayList<>();
+        if(rs.next()){
+            result.add(rs.getString("name"));
+            result.add(rs.getString("accountnumber"));
+            result.add("performed deposit");
+        }
+        return result;
     }
 }
